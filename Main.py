@@ -8,6 +8,7 @@ from PySide6.QtGui import QCursor,QMouseEvent, QIcon,QPixmap,QPalette,QBrush
 #import Local
 from Widget.Label import Label
 from Pages.Login import Login
+from Pages.RegisterForm import Register
 
 from PySide6.QtMultimediaWidgets import QVideoWidget
 import time
@@ -17,6 +18,7 @@ import os
 class Window(QWidget):
     def __init__(self):
         super().__init__()
+        self.username = ""
         self.setAttribute(Qt.WA_StyledBackground,True)
         self.setObjectName("mainWindow")
         self.setStyleSheet("""#mainWindow {
@@ -36,6 +38,8 @@ class Window(QWidget):
         self.sapa = Label("sapaMain",self)
         self.LoginPage = Login(self)
         self.LoginPage.hide()
+        self.sapaLogin = Label("successLogin",self)
+        self.registPage = Register(self)
 
 
         self.mainLayout = QVBoxLayout(self)
@@ -43,13 +47,17 @@ class Window(QWidget):
 
         self.mainLayout.addLayout(self.secondLayout)
         self.secondLayout.addWidget(self.LoginPage,alignment=Qt.AlignLeft)
+        self.secondLayout.addWidget(self.registPage,alignment=Qt.AlignRight)
+        self.secondLayout.addWidget(self.sapaLogin,alignment=Qt.AlignCenter)
         margins = self.secondLayout.contentsMargins()
-        self.secondLayout.setContentsMargins(40,2,2,2)
+        self.secondLayout.setContentsMargins(40,2,30,2)
         self.mainLayout.addWidget(self.sapa,alignment=Qt.AlignCenter)
 
         #Flag
         self.maxWidget = False
         self.changeTitle = False
+
+        
 
 
  
@@ -74,8 +82,6 @@ class Window(QWidget):
             self.LoginPage.setMinimumHeight(self.height() * 0.6)
             self.LoginPage.setMaximumHeight(self.height() * 0.9)
 
-        print(self.LoginPage.width())
-        print(self.LoginPage.dLogin.width())
 
         #dLogin
         self.LoginPage.dLogin.setMinimumSize(self.LoginPage.width() * 0.6, self.LoginPage.height() * 0.8)
@@ -84,7 +90,46 @@ class Window(QWidget):
         self.LoginPage.dLogin.sButton.setMinimumSize(self.LoginPage.width() * 0.6, self.LoginPage.height() * 0.1)
         self.LoginPage.dLogin.rButton.setMinimumSize(self.LoginPage.width() * 0.6, self.LoginPage.height() * 0.1)
 
+        #Register
+        self.registPage.setMinimumSize(self.width() * 0.25,self.height() * 0.8)
+        self.registPage.setMaximumSize(self.width() * 0.25,self.height() * 1)
 
+        if  self.width() <= self.monitorSizeWidth * 0.22:
+            self.registPage.setMinimumWidth(self.width() * 0.8)
+            self.registPage.setMinimumHeight(self.height() * 0.6)
+            self.registPage.setMaximumHeight(self.height() * 0.9)
+        elif self.width() <= self.monitorSizeWidth * 0.4 and self.width() >= self.monitorSizeWidth * 0.22:
+            self.registPage.setMinimumWidth(self.width() * 0.6)
+            self.registPage.setMinimumHeight(self.height() * 0.6)
+            self.registPage.setMaximumHeight(self.height() * 0.9)      
+        elif self.width() <= self.monitorSizeWidth * 0.6 and self.width() >= self.monitorSizeWidth * 0.4:
+            self.registPage.setMinimumWidth(self.width() * 0.4)
+            self.registPage.setMinimumHeight(self.height() * 0.6)
+            self.registPage.setMaximumHeight(self.height() * 0.9)    
+        else: 
+            self.registPage.setMinimumWidth(self.width() * 0.3)
+            self.registPage.setMinimumHeight(self.height() * 0.6)
+            self.registPage.setMaximumHeight(self.height() * 0.9)
+        
+        self.registPage.trueRegist.setMinimumSize(self.registPage.width() *0.8, self.registPage.height() * 0.8)
+        self.registPage.trueRegist.setMaximumSize(self.registPage.width() *0.8, self.registPage.height() * 0.8)
+
+        self.registPage.trueRegist.displayFName.setMinimumSize(self.registPage.trueRegist.width() * 0.4, self.registPage.trueRegist.height() * 0.07)
+        self.registPage.trueRegist.displayLName.setMinimumSize(self.registPage.trueRegist.width() * 0.4, self.registPage.trueRegist.height() * 0.07)
+        self.registPage.trueRegist.displayFName.setMaximumSize(self.registPage.trueRegist.width() * 0.4, self.registPage.trueRegist.height() * 0.07)
+        self.registPage.trueRegist.displayLName.setMaximumSize(self.registPage.trueRegist.width() * 0.4, self.registPage.trueRegist.height() * 0.07)
+
+        self.registPage.trueRegist.passwordRegistDisplay.setMinimumSize(self.registPage.trueRegist.width() * 0.83, self.registPage.trueRegist.height() * 0.07)
+        self.registPage.trueRegist.usernameRegistDisplay.setMinimumSize(self.registPage.trueRegist.width() * 0.83, self.registPage.trueRegist.height() * 0.07)
+        self.registPage.trueRegist.emailDisplay.setMinimumSize(self.registPage.trueRegist.width() * 0.83, self.registPage.trueRegist.height() * 0.07)
+       
+        #Month-Day-Years Birth
+        self.registPage.trueRegist.dayDisplay.setMinimumSize(self.registPage.trueRegist.width() * 0.27, self.registPage.trueRegist.height() * 0.07)
+        self.registPage.trueRegist.monthDisplay.setMinimumSize(self.registPage.trueRegist.width() * 0.27, self.registPage.trueRegist.height() * 0.07)
+        self.registPage.trueRegist.yearDisplay.setMinimumSize(self.registPage.trueRegist.width() * 0.27, self.registPage.trueRegist.height() * 0.07)
+        self.registPage.trueRegist.dayDisplay.setMaximumSize(self.registPage.trueRegist.width() * 0.27, self.registPage.trueRegist.height() * 0.07)
+        self.registPage.trueRegist.monthDisplay.setMaximumSize(self.registPage.trueRegist.width() * 0.27, self.registPage.trueRegist.height() * 0.07)
+        self.registPage.trueRegist.yearDisplay.setMaximumSize(self.registPage.trueRegist.width() * 0.27, self.registPage.trueRegist.height() * 0.07)
 
 
     def FullScreen(self):
