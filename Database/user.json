@@ -1,18 +1,13 @@
 {
     "Account": {
-        "": {
-            "password": "",
-            "firstName": "aa",
-            "lastName": "",
-            "email": ""
-        },
-        "sd": {
-            "password": "ds",
-            "firstName": "sd",
-            "lastName": "",
-            "email": "ds"
+        "Zeldryn": {
+            "password": "7539510a",
+            "firstName": "Ahmad",
+            "lastName": "Rizki",
+            "email": "ahm.riz666@gmail.com",
+            "day": "29",
+            "month": "06",
+            "years": "2006"
         }
-
-    
     }
 }
