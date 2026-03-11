@@ -56,7 +56,7 @@ class Window(QWidget):
         #Flag
         self.maxWidget = False
         self.changeTitle = False
-
+    
         
 
 
