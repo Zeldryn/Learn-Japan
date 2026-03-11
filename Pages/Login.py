@@ -40,7 +40,7 @@ class Login(QWidget):
         self.animLogin = QPropertyAnimation(self, b"pos")
         self.animLogin.setDuration(1500)
         self.animLogin.setStartValue(QPoint(self.window.pos().x() - 300,self.pos().y() + 40))
-        self.animLogin.setEndValue(QPoint(self.window.xLogin + 51,self.pos().y() + 50))
+        self.animLogin.setEndValue(QPoint(self.window.xLogin + 51,self.pos().y() + 40))
 
         self.animLoginFinish = QPropertyAnimation(self, b"pos")
         self.animLoginFinish.setDuration(1500)
