@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QPushButton
 from PySide6.QtCore import QTimer
+from PySide6.QtGui import QFont
 import json
 import os
 import time
@@ -10,25 +11,21 @@ path = "Database/user.json"
 
 def loadData():
     if not os.path.exists(path):
-        return [{
+        return {
             "Account" :
-                {
-                    "username" : "",
-                    "password" : ""
+                {}
                 }
-                }]
     
     try:
         with open(path,"r") as r:
             return json.load(r)
     except json.JSONDecodeError:
-        return [{
+        return {
             "Account" :
-            {
-                "username" : "",
-                "password" : ""
-            }
-        }]
+            {}
+        }
+
+
     
 
 
@@ -40,6 +37,7 @@ class Button(QPushButton):
         self.uDisplay = uDisplay
         self.pDisplay = pDisplay
         self.data = loadData()
+        self.Font = QFont()
         
         #Flag
         self.checkButton = False
@@ -80,8 +78,40 @@ class Button(QPushButton):
         
         elif self.id == "registSubmitButton":
             self.setText("Register")
+            self.setStyleSheet("""QPushButton {
+                    background-color : rgba(255, 255, 255, 1);
+                    color: black;
+                    }
+                    
+                    QPushButton:hover {
+                    background-color : rgba(255, 255, 255, 0.7)}
+                    
+                    QPushButton:pressed {
+                    background-color : rgba(255, 255, 255, 0.4)}""")
+            self.Font.setPointSize(15)
+            self.clicked.connect(self.submitRegist)
+
+            self.setFont(self.Font)
+
+        elif self.id == "registCButton" :
+            self.setText("C")
+            self.setStyleSheet("""QPushButton {
+                               background-color : rgba(255, 255, 255, 1);
+                               color: red;
+
+                               }
+                               
+                               QPushButton:hover {
+                               background-color : rgba(255, 255, 255, 0.7)}
+                               
+                               QPushButton:pressed {
+                               background-color : rgba(255, 255, 255, 0.4)}""")
+            self.Font.setPointSize(20)
+
+            self.setFont(self.Font)
 
     def login(self):
+        self.data = loadData()
         foundAccount = False
         for username,value in self.data["Account"].items():
             if self.uDisplay.text() == username and self.pDisplay.text() == value["password"]:
@@ -89,6 +119,7 @@ class Button(QPushButton):
                 self.window.wLogin.window.username = username
                 self.window.wLogin.animLoginFinish.finished.connect(self.login1)
                 self.window.wLogin.animLoginFinish.start()
+                self.window.wLogin.window.registPage.animOut.start()
  
                 foundAccount = True
 
@@ -102,6 +133,7 @@ class Button(QPushButton):
 
     
     def login1(self):
+            self.window.wLogin.window.registPage.hide()
             self.window.wLogin.window.LoginPage.hide()
             self.window.wLogin.window.sapaLogin.setText(f"Hello {self.username}")
             self.window.wLogin.window.sapaLogin.show()
@@ -110,3 +142,22 @@ class Button(QPushButton):
 
     def registLogic(self):
         self.window.wLogin.window.registPage.show()
+        self.window.wLogin.window.registPage.animIn.start()
+
+    def submitRegist(self):
+        self.data["Account"][self.window.window.window.registPage.trueRegist.usernameRegistDisplay.text()] = {
+            "password"  : self.window.window.window.registPage.trueRegist.passwordRegistDisplay.text(),
+            "firstName" : self.window.window.window.registPage.trueRegist.displayFName.text(),
+            "lastName"  : self.window.window.window.registPage.trueRegist.displayLName.text(),
+            "email"     : self.window.window.window.registPage.trueRegist.emailDisplay.text(),
+        }
+
+        with open(path,"w") as w:
+            json.dump(self.data,w,indent=4)
+
+        self.data = loadData()
+
+    
+    def refreshData(self):
+        self.data = self.loadData()
+
