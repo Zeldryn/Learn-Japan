@@ -2,7 +2,7 @@ from PySide6.QtWidgets import QWidget,QSizePolicy,QHBoxLayout,QVBoxLayout,QPushB
 from PySide6.QtCore import Qt,QPropertyAnimation,QRect
 
 from Widget.Label import Label
-from Widget.buttonDashBoard import Button
+
 
 class profileDashboard(QWidget):
     def __init__(self,window):
