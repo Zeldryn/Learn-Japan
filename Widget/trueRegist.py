@@ -28,6 +28,10 @@ class trueRegist(QWidget):
         self.monthDisplay = Display("monthDisplay",self)
         self.yearDisplay  = Display("yearDisplay",self)
 
+        #Button Widget
+        self.submitButton = Button("registSubmitButton",self,None,None)
+        self.cSubmitButton = Button("registCButton",self,None,None)
+
         #Widget Label
         self.textRegistFName = Label("textRegistFName",self)
         self.textRegistLName = Label("textRegistLName",self)
@@ -41,8 +45,9 @@ class trueRegist(QWidget):
         
 
         self.mainLayout = QVBoxLayout(self)
-        self.mainLayout.setSpacing(10)
-        self.mainLayout.setContentsMargins(2,20,2,20)
+        self.mainLayout.setSpacing(8)
+        self.mainLayout.setContentsMargins(20,80,20,20)
+        margins = self.mainLayout.contentsMargins()
         self.hbox1 = QHBoxLayout()
         self.hbox1.setSpacing(10)
         self.hboxPw = QHBoxLayout()
@@ -51,6 +56,7 @@ class trueRegist(QWidget):
         self.hbox4 = QHBoxLayout()
         self.hbox4.setSpacing(5)
 
+
         self.hbox1Text = QHBoxLayout()
         self.hbox1Text.setContentsMargins(10,10,20,0)
         self.hbox2Text = QHBoxLayout()
@@ -58,7 +64,11 @@ class trueRegist(QWidget):
         self.hbox3Text = QHBoxLayout()
 
         self.hbox4Text = QHBoxLayout()
-        self.hbox4.setSpacing(0)
+
+        self.hbox5 = QHBoxLayout()
+        self.hbox5.setContentsMargins(10,20,10,10)
+
+        self.hbox5.setSpacing(3)
 
 
 
@@ -78,6 +88,8 @@ class trueRegist(QWidget):
 
         self.mainLayout.addLayout(self.hbox4Text)
         self.mainLayout.addLayout(self.hbox4)
+
+        self.mainLayout.addLayout(self.hbox5)
 
 
         
@@ -110,6 +122,12 @@ class trueRegist(QWidget):
         self.hbox4.addWidget(self.monthDisplay,alignment=Qt.AlignCenter)
         self.hbox4.addWidget(self.yearDisplay,alignment=Qt.AlignRight)
         self.hbox4.addStretch()
-        self.mainLayout.addStretch()
+
+
+        self.hbox5.addStretch()
+        self.hbox5.addWidget(self.submitButton,alignment=Qt.AlignCenter)
+        self.hbox5.addWidget(self.cSubmitButton,alignment=Qt.AlignCenter)
+        self.hbox5.addStretch()
+
 
         
