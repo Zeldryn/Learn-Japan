@@ -1,10 +1,11 @@
 from PySide6.QtWidgets import QPushButton
-from PySide6.QtCore import QTimer
+from PySide6.QtCore import QTimer,Qt
 from PySide6.QtGui import QFont
 import json
 import os
 import time
 from Pages.secondWindow import Dashboard
+
 
 
 path = "Database/user.json"
@@ -38,6 +39,7 @@ class Button(QPushButton):
         self.pDisplay = pDisplay
         self.data = loadData()
         self.Font = QFont()
+        self.dashboard = Dashboard()
         
         #Flag
         self.checkButton = False
@@ -110,6 +112,8 @@ class Button(QPushButton):
 
             self.setFont(self.Font)
 
+
+
     def login(self):
         self.data = loadData()
         foundAccount = False
@@ -126,7 +130,7 @@ class Button(QPushButton):
 
         
         if not foundAccount:
-            self.window.tfLogin.setText(f"Can't Found The Accout With {self.uDisplay.text()} Username")
+            self.window.tfLogin.setText(f"Can't Found The Account With {self.uDisplay.text()} Username")
             self.window.tfLogin.show()
 
 
@@ -137,6 +141,7 @@ class Button(QPushButton):
             self.window.wLogin.window.LoginPage.hide()
             self.window.wLogin.window.sapaLogin.setText(f"Hello {self.username}")
             self.window.wLogin.window.sapaLogin.show()
+            self.window.wLogin.window.sapaLogin.animSapa.finished.connect(self.openWindow2,Qt.SingleShotConnection)
             self.window.wLogin.window.sapaLogin.animSapa.start()
     
 
@@ -150,6 +155,10 @@ class Button(QPushButton):
             "firstName" : self.window.window.window.registPage.trueRegist.displayFName.text(),
             "lastName"  : self.window.window.window.registPage.trueRegist.displayLName.text(),
             "email"     : self.window.window.window.registPage.trueRegist.emailDisplay.text(),
+            "day"     : self.window.window.window.registPage.trueRegist.dayDisplay.text(),
+            "month"     : self.window.window.window.registPage.trueRegist.monthDisplay.text(),
+            "years"     : self.window.window.window.registPage.trueRegist.yearDisplay.text(),
+
         }
 
         with open(path,"w") as w:
@@ -160,4 +169,15 @@ class Button(QPushButton):
     
     def refreshData(self):
         self.data = self.loadData()
+
+    def openWindow2(self):
+        self.dashboard.show()
+        self.dashboard.showMaximized()
+        self.window.wLogin.window.hide()
+        QTimer.singleShot(0,self.dashboard.profileDashboard.anim.start)
+        QTimer.singleShot(0,self.dashboard.mainButton.anim.start)
+        QTimer.singleShot(0,self.dashboard.mainButton2.anim.start)
+        QTimer.singleShot(0,self.dashboard.mainButton3.anim.start)
+
+
 
