@@ -96,6 +96,9 @@ class Label(QLabel):
             self.setStyleSheet("color:white")
             self.setText("Birthday")
 
+        elif id == "TextLH":
+
+            self.setStyleSheet("color: #0C7779")
             
 
     def animFadeout(self):
