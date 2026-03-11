@@ -130,7 +130,10 @@ class Window(QWidget):
         self.registPage.trueRegist.dayDisplay.setMaximumSize(self.registPage.trueRegist.width() * 0.27, self.registPage.trueRegist.height() * 0.07)
         self.registPage.trueRegist.monthDisplay.setMaximumSize(self.registPage.trueRegist.width() * 0.27, self.registPage.trueRegist.height() * 0.07)
         self.registPage.trueRegist.yearDisplay.setMaximumSize(self.registPage.trueRegist.width() * 0.27, self.registPage.trueRegist.height() * 0.07)
-
+        self.registPage.trueRegist.submitButton.setMinimumSize(self.registPage.trueRegist.width() * 0.55,self.registPage.trueRegist.height() * 0.1)
+        self.registPage.trueRegist.cSubmitButton.setMinimumSize(self.registPage.trueRegist.width() * 0.28,self.registPage.trueRegist.height() * 0.1)
+        self.registPage.trueRegist.submitButton.setMaximumSize(self.registPage.trueRegist.width() * 0.55,self.registPage.trueRegist.height() * 0.09)
+        self.registPage.trueRegist.cSubmitButton.setMaximumSize(self.registPage.trueRegist.width() * 0.28,self.registPage.trueRegist.height() * 0.09)
 
     def FullScreen(self):
         if self.sapa.isHidden() and not self.maxWidget:
@@ -142,6 +145,7 @@ class Window(QWidget):
             self.LoginPage.animLogin.start()
             if self.changeTitle == True:
                 self.setWindowTitle("Learn Japan (Login)")
+
             
 
 
