@@ -35,7 +35,7 @@ class Display(QLineEdit):
             self.setAlignment(Qt.AlignCenter)
 
         elif self.id == "usernameRegistDisplay":
-            self.setPlaceholderText("First Name")
+            self.setPlaceholderText("Username")
             self.setReadOnly(False)
             self.setAlignment(Qt.AlignCenter)
             self.setSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding)
