@@ -1,4 +1,5 @@
 from PySide6.QtWidgets import QWidget
+from PySide6.QtGui import QIcon
 
 from Widget.Dashboard import profileDashboard, MainButton, MainButton2, MainButton3
 class Dashboard(QWidget):
@@ -8,8 +9,10 @@ class Dashboard(QWidget):
         self.resize(self.screen().availableGeometry().width(),self.screen().availableGeometry().height())
         self.setFixedSize(self.screen().availableGeometry().width(),self.screen().availableGeometry().height())
         self.setWindowTitle("Home")
+        self.setWindowIcon(QIcon("Image/Icon/mainIcon.png"))
         self.profileDashboard = profileDashboard(self)
         self.profileDashboard.setParent(self)
+
         
         self.mainButton = MainButton(self)
         self.mainButton.setParent(self)
