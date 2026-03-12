@@ -1,7 +1,6 @@
 from PySide6.QtWidgets import QWidget,QSizePolicy,QHBoxLayout,QVBoxLayout,QPushButton
 from PySide6.QtCore import Qt,QPropertyAnimation,QRect
 from PySide6.QtGui import QFont
-from Widget.blackScreenHelper import blackScreen
 
 from Widget.Label import Label
 
