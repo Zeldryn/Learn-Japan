@@ -44,7 +44,6 @@ class MainButton(QPushButton):
         super().__init__()
         self.Expanding = False    
         self.window = window
-        self.clicked.connect(self.Pesan)
         self.setAttribute(Qt.WA_StyledBackground,True)
         self.setObjectName("B1") 
         self.setStyleSheet("""#B1{
@@ -89,8 +88,6 @@ class MainButton(QPushButton):
     def flag1(self):
         self.Expanding = True
 
-    def Pesan(self):
-        print("Ditekan")
 
     
     def enterEvent(self,event):
@@ -116,6 +113,7 @@ class MainButton2(QPushButton):
         self.window = window
         self.setAttribute(Qt.WA_StyledBackground,True)
         self.setObjectName("B2") 
+        self.Expanding = False
         self.setStyleSheet("""#B2{
                            background-image: url(Image/AnyImage/DashboardImage/katakanaImage.png);
                            background-position:center;
@@ -154,28 +152,33 @@ class MainButton2(QPushButton):
         self.anim.setDuration(2000)
         self.anim.setStartValue(QRect(self.window.width() * 0.5, self.window.height() * 0.55 ,0,0))
         self.anim.setEndValue(QRect(self.window.width() * 0.375,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45 ))
-        self.anim.start()
+        self.anim.finished.connect(self.flag2)
 
+
+    def flag2(self):
+        self.Expanding = True
 
     def enterEvent(self,event):
-        self.anim1 = QPropertyAnimation(self,b"geometry")
-        self.anim1.setDuration(100)
-        self.anim1.setStartValue(QRect(self.window.width() * 0.375,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45 ))
-        self.anim1.setEndValue(QRect(self.window.width() * 0.3625,self.window.height() * 0.3025, self.window.width() * 0.275,self.window.height() * 0.495 ))
-        self.anim1.start()
+        if self.Expanding == True:
+            self.anim1 = QPropertyAnimation(self,b"geometry")
+            self.anim1.setDuration(100)
+            self.anim1.setStartValue(QRect(self.window.width() * 0.375,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45 ))
+            self.anim1.setEndValue(QRect(self.window.width() * 0.3625,self.window.height() * 0.3025, self.window.width() * 0.275,self.window.height() * 0.495 ))
+            self.anim1.start()
 
     def leaveEvent(self,event):
-        self.anim2 = QPropertyAnimation(self,b"geometry")
-        self.anim2.setDuration(100)
-        self.anim2.setStartValue(QRect(self.window.width() * 0.3625,self.window.height() * 0.3025, self.window.width() * 0.275,self.window.height() * 0.495 ))
-        self.anim2.setEndValue(QRect(self.window.width() * 0.375,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45))
-        self.anim2.start()
+        if self.Expanding == True:
+            self.anim2 = QPropertyAnimation(self,b"geometry")
+            self.anim2.setDuration(100)
+            self.anim2.setStartValue(QRect(self.window.width() * 0.3625,self.window.height() * 0.3025, self.window.width() * 0.275,self.window.height() * 0.495 ))
+            self.anim2.setEndValue(QRect(self.window.width() * 0.375,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45))
+            self.anim2.start()
 
 class MainButton3(QPushButton):
     def __init__(self,window):
         super().__init__()
         self.window = window
-
+        self.Expanding = False
         self.setAttribute(Qt.WA_StyledBackground,True)
         self.setObjectName("B3") 
         self.setStyleSheet("""#B3{
@@ -215,19 +218,25 @@ class MainButton3(QPushButton):
         self.anim.setDuration(2000)
         self.anim.setStartValue(QRect(self.window.width() * 0.8, self.window.height() * 0.55 ,0,0))
         self.anim.setEndValue(QRect(self.window.width() * 0.675,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45 ))
-        self.anim.start()
+        self.anim.finished.connect(self.flag3)
+        
 
+
+    def flag3(self):
+        self.Expanding = True
 
     def enterEvent(self,event):
-        self.anim1 = QPropertyAnimation(self,b"geometry")
-        self.anim1.setDuration(100)
-        self.anim1.setStartValue(QRect(self.window.width() * 0.675,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45 ))
-        self.anim1.setEndValue(QRect(self.window.width() * 0.66125,self.window.height() * 0.30025, self.window.width() * 0.275,self.window.height() * 0.495 ))
-        self.anim1.start()
+        if self.Expanding == True:
+            self.anim1 = QPropertyAnimation(self,b"geometry")
+            self.anim1.setDuration(100)
+            self.anim1.setStartValue(QRect(self.window.width() * 0.675,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45 ))
+            self.anim1.setEndValue(QRect(self.window.width() * 0.66125,self.window.height() * 0.30025, self.window.width() * 0.275,self.window.height() * 0.495 ))
+            self.anim1.start()
 
     def leaveEvent(self,event):
-        self.anim2 = QPropertyAnimation(self,b"geometry")
-        self.anim2.setDuration(100)
-        self.anim2.setStartValue(QRect(self.window.width() * 0.66125,self.window.height() * 0.30025, self.window.width() * 0.275,self.window.height() * 0.495 ))
-        self.anim2.setEndValue(QRect(self.window.width() * 0.675,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45 ))
-        self.anim2.start()
+        if self.Expanding == True:
+            self.anim2 = QPropertyAnimation(self,b"geometry")
+            self.anim2.setDuration(100)
+            self.anim2.setStartValue(QRect(self.window.width() * 0.66125,self.window.height() * 0.30025, self.window.width() * 0.275,self.window.height() * 0.495 ))
+            self.anim2.setEndValue(QRect(self.window.width() * 0.675,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45 ))
+            self.anim2.start()
