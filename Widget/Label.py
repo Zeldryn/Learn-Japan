@@ -12,7 +12,7 @@ class Label(QLabel):
  
         self.font = QFont()
 
-        if id == "sapaMain":
+        if self.id == "sapaMain":
             self.setText("Hello Welcome To Learn Japan :D")
             self.setFont(self.font)
             self.setStyleSheet("color:white;")
@@ -29,7 +29,7 @@ class Label(QLabel):
             self.animSapa.start()
 
 
-        elif id == "titleLogin":
+        elif self.id == "titleLogin":
             self.setText("Login To Your Account")
             self.setStyleSheet("""QLabel {
                                color:white
@@ -39,7 +39,7 @@ class Label(QLabel):
             self.setFont(self.font)
 
 
-        elif id == "titleRegist":
+        elif self.id == "titleRegist":
             self.setText("Register New Account")
             self.setStyleSheet("""QLabel {
                                color:white
@@ -55,7 +55,7 @@ class Label(QLabel):
 
 
 
-        elif id == "successLogin":
+        elif self.id == "successLogin":
             self.hide()
             self.setStyleSheet("color:white;")
             self.font.setPointSize(int(self.window.width() * 0.1))
@@ -71,34 +71,37 @@ class Label(QLabel):
             self.animSapa.setEndValue(1)
             self.animSapa.finished.connect(self.animFadeout)
         
-        elif id == "textRegistFName":
+        elif self.id == "textRegistFName":
             self.setStyleSheet("color:white")
             self.setText("First Name")
 
-        elif id == "textRegistLName":
+        elif self.id == "textRegistLName":
             self.setStyleSheet("color:white")
             self.setText("Last Name")
 
-        elif id == "textRegistUsername":
+        elif self.id == "textRegistUsername":
             self.setStyleSheet("color:white")
             self.setText("Username")
 
-        elif id == "textRegistPassword":
+        elif self.id == "textRegistPassword":
             self.setStyleSheet("color:white")
             self.setText("Password")
 
-        elif id == "textRegistEmail":
+        elif self.id == "textRegistEmail":
             self.setStyleSheet("color:white")
             self.setText("Email Name")
 
 
-        elif id == "textRegistYear":
+        elif self.id == "textRegistYear":
             self.setStyleSheet("color:white")
             self.setText("Birthday")
 
-        elif id == "TextLH":
+        elif self.id == "TextLH":
 
             self.setStyleSheet("color: #0C7779")
+
+
+        
             
 
     def animFadeout(self):
