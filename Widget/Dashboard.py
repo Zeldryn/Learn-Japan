@@ -92,6 +92,7 @@ class MainButton(QPushButton):
     
     def enterEvent(self,event):
         if self.Expanding == True:
+            self.setCursor(Qt.PointingHandCursor)
             self.anim1 = QPropertyAnimation(self,b"geometry")
             self.anim1.setDuration(100)
             self.anim1.setStartValue(QRect(self.window.width() * 0.075,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45))
@@ -160,6 +161,7 @@ class MainButton2(QPushButton):
 
     def enterEvent(self,event):
         if self.Expanding == True:
+            self.setCursor(Qt.PointingHandCursor)
             self.anim1 = QPropertyAnimation(self,b"geometry")
             self.anim1.setDuration(100)
             self.anim1.setStartValue(QRect(self.window.width() * 0.375,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45 ))
@@ -227,6 +229,7 @@ class MainButton3(QPushButton):
 
     def enterEvent(self,event):
         if self.Expanding == True:
+            self.setCursor(Qt.PointingHandCursor)
             self.anim1 = QPropertyAnimation(self,b"geometry")
             self.anim1.setDuration(100)
             self.anim1.setStartValue(QRect(self.window.width() * 0.675,self.window.height() * 0.325, self.window.width() * 0.25,self.window.height() * 0.45 ))
