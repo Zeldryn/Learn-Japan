@@ -1,6 +1,6 @@
 from PySide6.QtWidgets import QLabel, QGraphicsOpacityEffect
 from PySide6.QtGui import QFont
-from PySide6.QtCore import QTimer,QPropertyAnimation
+from PySide6.QtCore import QTimer,QPropertyAnimation,QRect,Qt
 import random
 
 class Label(QLabel):
@@ -101,9 +101,23 @@ class Label(QLabel):
             self.setStyleSheet("color: #0C7779")
 
 
-        
-            
-
+        elif self.id == "textHiraganaMode":
+            self.setText("Hiragana Train")
+            self.setAlignment(Qt.AlignCenter)
+            self.font.setPointSize(15)
+            self.font.setItalic(True)
+            self.setFont(self.font)
+            self.setStyleSheet("""QLabel {
+                               background-color : rgba(0, 183, 181, 1);
+                               color : white;
+                               border:2px solid white;
+                               border-radius:10px;
+                               }""")
+            self.animHM = QPropertyAnimation(self,b"geometry")
+            self.animHM.setDuration(2000)
+            self.animHM.setStartValue(QRect(self.window.width() * 0.2175,self.window.height() * 0.33,0,0))
+            self.animHM.setEndValue(QRect(self.window.width() * 0.145,self.window.height() * 0.22,self.window.width() * 0.1, self.window.height() * 0.05))
+    
     def animFadeout(self):
         self.animSapa.setDuration(2000)
         self.animSapa.setStartValue(1)
