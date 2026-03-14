@@ -20,6 +20,9 @@ class Dashboard(QWidget):
         
         self.textMB1 = Label("textKatakanaMode",self)
         self.textMB1.setParent(self)
+
+        self.textMB2 = Label("textKotobaMode",self)
+        self.textMB2.setParent(self)
         
         
         self.mainButton = MainButton(self)
