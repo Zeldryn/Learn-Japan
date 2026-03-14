@@ -180,6 +180,8 @@ class Button(QPushButton):
         QTimer.singleShot(0,self.dashboard.mainButton3.anim.start)
         QTimer.singleShot(0,self.dashboard.textMB.animHM.start)
         QTimer.singleShot(0,self.dashboard.textMB1.animHM.start)
+        QTimer.singleShot(0,self.dashboard.textMB2.animHM.start)
+
 
 
 
