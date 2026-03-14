@@ -134,7 +134,24 @@ class Label(QLabel):
             self.animHM.setDuration(2000)
             self.animHM.setStartValue(QRect(self.window.width() * 0.47,self.window.height() * 0.33,0,0))
             self.animHM.setEndValue(QRect(self.window.width() * 0.45,self.window.height() * 0.22,self.window.width() * 0.1, self.window.height() * 0.05))
-    
+
+        elif self.id == "textKotobaMode":
+            self.setText("Kotoba Train")
+            self.setAlignment(Qt.AlignCenter)
+            self.font.setPointSize(15)
+            self.font.setItalic(True)
+            self.setFont(self.font)
+            self.setStyleSheet("""QLabel {
+                               background-color : rgba(0, 183, 181, 1);
+                               color : white;
+                               border:2px solid white;
+                               border-radius:10px;
+                               }""")
+            self.animHM = QPropertyAnimation(self,b"geometry")
+            self.animHM.setDuration(2000)
+            self.animHM.setStartValue(QRect(self.window.width() * 0.77,self.window.height() * 0.33,0,0))
+            self.animHM.setEndValue(QRect(self.window.width() * 0.75,self.window.height() * 0.22,self.window.width() * 0.1, self.window.height() * 0.05))
+ 
     def animFadeout(self):
         self.animSapa.setDuration(2000)
         self.animSapa.setStartValue(1)
